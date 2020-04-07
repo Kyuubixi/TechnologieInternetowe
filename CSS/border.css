@@ -1,0 +1,14 @@
+.first{
+    border: solid thin red;
+    border-top: dotted medium yellow;
+    border-style: double;
+}
+
+.second{
+    border: solid gray;
+    border-width: 5px 6px 7px 8px;
+    border-top-style: double;
+    border-right-style: dashed;
+    border-bottom-style: groove;
+    border-left-style: ridge;
+}

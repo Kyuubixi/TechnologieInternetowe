@@ -1,0 +1,34 @@
+div.box{
+    height: 30%;
+    width: 50%;
+}
+
+p.hidden{
+    overflow:hidden;
+}
+
+p.scroll{
+    overflow: scroll;
+}
+
+p{
+    height: 20%;
+    width: 20%;
+    background-color: blue;
+}
+
+td > img{
+    width: 200px;
+}
+
+td.description{
+    min-width: 400px;
+    max-width: 500px;
+    margin: 0;
+    padding: 5px;
+    text-align: left;
+}
+
+th{
+    border-bottom: solid 2px red;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/form.css">
+    <title>Formularz</title>
+</head>
+<body>
+    <form method="GET" action="#">
+        <input type="text" name="name" id="name" placeholder="Imię" autofocus autocomplete="off"><br>
+        <input type="text" name="surname" id="name" placeholder="Nazwisko" autocomplete="off"><br>
+        <input type="password" name="password" id="pass" placeholder="Hasło" autocomplete="off"><br>
+        <input type="date" name="date" id="date"><br>
+        <input type="radio" name="colors" value="red">red
+        <input type="radio" name="colors" value="green">green
+        <input type="radio" name="colors" value="blue">blue<br>
+        <select name="miejscowosc">
+            <optgroup label="Wielkopolskie">
+                <option value="poz">Poznań</option>
+                <option value="gni">Gniezno</option>
+            </optgroup>
+            <optgroup label="Zachodniopomorskie">
+                <option value="sta">Stargard</option>
+                <option value="szc">Szczecin</option>
+            </optgroup>
+        </select><br>
+        <input type="submit" name="Button" value="Wyślij">
+    </form>
+</body>
+</html>
