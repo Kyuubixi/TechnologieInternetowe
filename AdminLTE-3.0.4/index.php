@@ -23,6 +23,18 @@
   <div class="login-logo">
     <a href="./"><b>Admin</b>LTE</a>
   </div>
+    <?php
+      if(isset($_GET['register']))
+      {
+        echo <<< INFO
+          <div class="card card-outline card-success">
+            <div class="card-header">
+              <h3 class="card-title">Successfully added user</h3>
+            </div>
+          </div>
+        INFO;
+      }
+    ?>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">

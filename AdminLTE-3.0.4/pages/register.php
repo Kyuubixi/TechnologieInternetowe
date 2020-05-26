@@ -29,7 +29,7 @@
   if(isset($_SESSION['error']))
   {
     echo <<< ERROR
-    <div class="card bg-danger">
+    <div class="card card-outline card-danger">
       <div class="card-header">
         <h3 class="card-title">$_SESSION[error]</h3>
       </div>
@@ -56,6 +56,31 @@
 
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Surname" name='surname'>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- cities fetched from database -->
+        <div class="input-group mb-3">
+          <select class='form-control' name="city">
+            <?php
+              require_once '../script/connect.php';
+              
+              $sql = 'SELECT `city`.`city` FROM `city` WHERE `city`.`id` = ?';
+
+              while()
+              {
+
+
+                $stmt = $connect->prepare($sql);
+                $stmt->bind_param('s', $email);
+                $stmt->execute();
+              }
+            ?>
+          </select>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
