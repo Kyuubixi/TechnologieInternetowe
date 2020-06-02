@@ -34,11 +34,11 @@
 
         $name = $_POST['name'];
         $surname = $_POST['surname'];
+        $city = $_POST['city'];
         $email = $_POST['email1'];
         $pass = $_POST['pass1'];
         $birthdate = $_POST['birthdate'];
 
-        $city = 1;
 
 
         // password encryption using ARGON2ID

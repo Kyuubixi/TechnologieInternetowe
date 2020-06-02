@@ -67,23 +67,25 @@
         <div class="input-group mb-3">
           <select class='form-control' name="city">
             <?php
-              require_once '../script/connect.php';
+              require_once '../scripts/connect.php';
               
-              $sql = 'SELECT `city`.`city` FROM `city` WHERE `city`.`id` = ?';
+              $sql = "SELECT `name` FROM `cities`";
 
-              while()
+              $result = $connect->query($sql);
+
+              while($row = $result->fetch_assoc())
               {
-
-
-                $stmt = $connect->prepare($sql);
-                $stmt->bind_param('s', $email);
-                $stmt->execute();
+                echo <<< OPTION
+                  <option value="$row[id]">$row[name]</option>
+                OPTION;
               }
+
+              $connect->close();
             ?>
           </select>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-user"></span>
+              <span class="fas fa-globe"></span>
             </div>
           </div>
         </div>
