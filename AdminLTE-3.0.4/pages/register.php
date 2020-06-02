@@ -69,7 +69,7 @@
             <?php
               require_once '../scripts/connect.php';
               
-              $sql = "SELECT `name` FROM `cities`";
+              $sql = "SELECT * FROM `cities`";
 
               $result = $connect->query($sql);
 

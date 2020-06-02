@@ -63,6 +63,9 @@
         if($stmt->execute())
         {
             header('location: ../?register=success');
+            $stmt->close();
+            $connect->close();
+            exit();
         }
         else
         {
@@ -72,13 +75,16 @@
             $stmt->bind_param('s', $email);
             $stmt->execute();
 
-            if($connect->affected_rows)
+            $result = $stmt->get_result();
+
+            if($result->num_rows == 1)
             {
                 $_SESSION['error'] = 'Provided email already exists in the database.';
             }
             else
             {
-                $_SESSION['error'] = 'Failed to add user to the database.';
+                // $_SESSION['error'] = 'Failed to add user to the database.';
+                $_SESSION['error'] = $city;
             }
 
             ?>
@@ -87,7 +93,8 @@
                 </script>
             <?php
         }
-
+        
+        
         $stmt->close();
         $connect->close();
         exit();
