@@ -1,6 +1,23 @@
 <?php
     session_start();
 
+    if (isset($_SESSION['logged']['email']))
+    {
+        switch($_SESSION['logged']['permission'])
+        {
+            case '1': 
+                header('location: ../pages/logged/admin.php');
+                break;
+            case '2':
+                header('location: ../pages/logged/user.php');
+                break;
+            case '3':
+                header('location: ../pages/logged/moderator.php');
+                break;
+        }
+        exit();
+    }
+
     if(!empty($_POST['email'] && !empty($_POST['pass'])))
     {
         $email = $_POST['email'];
@@ -19,8 +36,6 @@
 
         if($result->num_rows == 1)
         {
-            // pobranie z bazy hasła, zabezpieczyć przed sql injection
-
             $user = $result->fetch_assoc();
 
             if(password_verify ($pass, $user['password']))
@@ -31,6 +46,7 @@
                         $_SESSION['logged']['name'] = $user['name'];
                         $_SESSION['logged']['surname'] = $user['surname'];
                         $_SESSION['logged']['email'] = $user['email'];
+                        $_SESSION['logged']['permission'] = $user['permission_id'];
                     case '2':
                         $_SESSION['error'] = "Account is inactive<br>Email: ".$user['email'];
                         break;

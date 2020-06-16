@@ -551,7 +551,7 @@
             <!-- TABLE: LATEST ORDERS -->
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Latest Orders</h3>
+                <h3 class="card-title">Users</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -568,69 +568,73 @@
                   <table class="table m-0">
                     <thead>
                     <tr>
-                      <th>Order ID</th>
-                      <th>Item</th>
+                      <th>Name</th>
+                      <th>Surname</th>
+                      <th>Permission</th>
                       <th>Status</th>
-                      <th>Popularity</th>
+                      <th>Last login</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR7429</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-info">Processing</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="../../pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
+                      <?php
+                        require_once '../../scripts/connect.php';
+
+                        $sql = 'SELECT * FROM user INNER JOIN permissions ON user.permission_id = permissions.id INNER JOIN status ON user.status_id = status.id LIMIT 4';
+                        $result = $connect->query($sql);
+
+                        if ($result->num_rows != 0)
+                        {
+                          while($user = $result->fetch_assoc())
+                          {
+                            echo "<tr>";
+                            echo "<td>$user[name]
+                            <td>$user[surname]";
+
+                            switch($user['permission_id'])
+                            {
+                                case '1': 
+                                    $color = 'info';
+                                    break;
+                                case '2':
+                                    $color = 'success';
+                                    break;
+                                case '3':
+                                    $color = 'warning';
+                                    break;
+                            }
+
+                            $permission = ucfirst($user['permission']);
+
+                            echo "<td><span class=\"badge badge-$color\">$permission</span></td>";
+
+                            switch($user['status_id'])
+                            {
+                                case '1': 
+                                    $color = 'success';
+                                    break;
+                                case '2':
+                                    $color = 'danger';
+                                    break;
+                                case '3':
+                                    $color = 'warning';
+                                    break;
+                            }
+
+                            $status = ucfirst($user['status']);
+
+                            echo "<td><span class=\"badge badge-$color\">$status</td>";
+
+                              // <td>
+                              //     $user[last_login]
+                              // </td>
+                            echo "</tr>";
+                          }
+                        }
+                        else
+                        {
+                          echo '<td colspan="5">No records</td>';
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>

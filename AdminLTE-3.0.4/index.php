@@ -1,5 +1,9 @@
 <?php
   session_start();
+
+  if (isset($_SESSION['logged']['email'])) {
+    header('location: ./scripts/login.php');
+  }
 ?>
 <!DOCTYPE html>
 <html>
