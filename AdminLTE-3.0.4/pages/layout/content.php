@@ -613,10 +613,10 @@
                                     $color = 'success';
                                     break;
                                 case '2':
-                                    $color = 'danger';
+                                    $color = 'warning';
                                     break;
                                 case '3':
-                                    $color = 'warning';
+                                    $color = 'danger';
                                     break;
                             }
 
@@ -624,15 +624,22 @@
 
                             echo "<td><span class=\"badge badge-$color\">$status</td>";
 
-                              // <td>
-                              //     $user[last_login]
-                              // </td>
+                            if ($user['last_login'] != null)
+                            {
+                              echo "<td>$user[last_login]</td>";
+                            }
+                            else
+                            {
+                              echo "<td>Never</td>";
+                            }
+
+
                             echo "</tr>";
                           }
                         }
                         else
                         {
-                          echo '<td colspan="5">No records</td>';
+                          echo '<td colspan="5"><span class="badge badge-danger">No records</span></td>';
                         }
                       ?>
                     </tbody>

@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require_once './connect.php';
+
     if (isset($_SESSION['logged']['email']))
     {
         switch($_SESSION['logged']['permission'])
@@ -22,8 +24,6 @@
     {
         $email = $_POST['email'];
         $pass = $_POST['pass'];
-
-        require_once './connect.php';
 
         $sql = "SELECT * FROM `user` WHERE `email` = ?";
 
@@ -74,6 +74,12 @@
                             break;
                     }
                 }
+
+                     // update last login
+                    $date = date('Y-m-d H:i:s');
+                    $email = $_SESSION['logged']['email'];
+                    $sql = "UPDATE `user` SET `last_login`='$date' WHERE email='$email'";
+                    $connect->query($sql);
 
                 $stmt->close();
                 $connect->close();
