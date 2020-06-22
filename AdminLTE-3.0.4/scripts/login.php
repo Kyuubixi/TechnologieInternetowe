@@ -5,18 +5,7 @@
 
     if (isset($_SESSION['logged']['email']))
     {
-        switch($_SESSION['logged']['permission'])
-        {
-            case '1':
-                header('location: ../pages/logged/admin.php');
-                break;
-            case '2':
-                header('location: ../pages/logged/user.php');
-                break;
-            case '3':
-                header('location: ../pages/logged/moderator.php');
-                break;
-        }
+        header('location: ../pages/logged/main.php');
         exit();
     }
 
@@ -48,6 +37,8 @@
                         $_SESSION['logged']['email'] = $user['email'];
                         $_SESSION['logged']['permission'] = $user['permission_id'];
                         $_SESSION['user_id'] = $user['ID'];
+                        $_SESSION['user_permission'] = $user['permission_id'];
+                        break;
                     case '2':
                         $_SESSION['error'] = "Account is inactive<br>Email: ".$user['email'];
                         break;
@@ -62,18 +53,7 @@
                 }
                 else
                 {
-                    switch($user['permission_id'])
-                    {
-                        case '1':
-                            header('location: ../pages/logged/admin.php');
-                            break;
-                        case '2':
-                            header('location: ../pages/logged/user.php');
-                            break;
-                        case '3':
-                            header('location: ../pages/logged/moderator.php');
-                            break;
-                    }
+                    header('location: ../pages/logged/main.php');
                 }
 
                      // update last login

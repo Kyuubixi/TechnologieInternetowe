@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  if(!isset($_SESSION['logged']['email']) || $_SESSION['logged']['permission'] != 1)
+  if(!isset($_SESSION['logged']['email']))
   {
     header('location: ../../');
   }
@@ -27,7 +27,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <?php
-  require_once '../layout/admin_content.php';
+  require_once '../layout/manage_users_content.php';
   ?>
   <!-- /.content-wrapper -->
 

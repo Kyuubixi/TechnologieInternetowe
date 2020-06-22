@@ -70,6 +70,15 @@
               <span class="fas fa-book-open"></span>
             </div>
           </div>
+        </div>        
+        
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="External link" name='link'></input>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-link"></span>
+            </div>
+          </div>
         </div>
 
         <div class="row">
