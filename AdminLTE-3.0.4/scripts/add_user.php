@@ -83,8 +83,7 @@
             }
             else
             {
-                // $_SESSION['error'] = 'Failed to add user to the database.';
-                $_SESSION['error'] = $city;
+                $_SESSION['error'] = 'Failed to add user to the database.';
             }
 
             ?>

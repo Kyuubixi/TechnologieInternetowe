@@ -27,7 +27,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <?php
-  require_once '../layout/content.php';
+  require_once '../layout/admin_content.php';
   ?>
   <!-- /.content-wrapper -->
 
